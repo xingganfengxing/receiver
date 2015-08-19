@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <timestamp key="byDay" datePattern="yyyy-MM-dd"/>
+    <substitutionProperty name="log.base" value="/usr/local/resin/log/"/>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <layout>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{32} - %msg%n</pattern>
+        </layout>
+    </appender>
+    <logger name="com.letv.log" value="debug"></logger>
+    <appender name="logfile-dao" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.base}/cloudlivepresure.log</file>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{32} - %msg%n</pattern>
+        </layout>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${log.base}/%d{yyyy-MM-dd}_cloudlivepresure.log.zip</FileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <root>
+        <level value="debug"/>
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="logfile-dao"/>
+    </root>
+</configuration>

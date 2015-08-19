@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://java.sun.com/xml/ns/javaee"
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+		 id="WebApp_ID" version="2.5">
+	<display-name>cdn-receiver</display-name>
+	<!-- session超时定义,单位为分钟 -->
+	<session-config>
+		<session-timeout>10</session-timeout>
+	</session-config>
+
+	<!-- 默认首页定义 -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+	<listener>
+		<listener-class>com.letv.cdn.receiver.servlet.support.ReceiverLiveServletContext</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>ReceiverServlet</servlet-name>
+		<servlet-class>com.letv.cdn.receiver.servlet.ReceiverServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReceiverServlet</servlet-name>
+		<url-pattern>/post/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FlvSSServlet</servlet-name>
+		<servlet-class>com.letv.cdn.receiver.servlet.FlvSSServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FlvSSServlet</servlet-name>
+		<url-pattern>/live/serverreport/flv</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>HlsSSServlet</servlet-name>
+		<servlet-class>com.letv.cdn.receiver.servlet.HlsSSServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HlsSSServlet</servlet-name>
+		<url-pattern>/live/serverreport/hls</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>RtmpSSServlet</servlet-name>
+		<servlet-class>com.letv.cdn.receiver.servlet.RtmpSSServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RtmpSSServlet</servlet-name>
+		<url-pattern>/live/serverreport</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>VodBandwidthSSServlet</servlet-name>
+		<servlet-class>com.letv.cdn.receiver.servlet.VodBandwidthSSServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>VodBandwidthSSServlet</servlet-name>
+		<url-pattern>/vod/serverreport/bandwidth</url-pattern>
+	</servlet-mapping>
+
+	<!-- <servlet> <servlet-name>RtmpCSServlet</servlet-name> <servlet-class>com.letv.cdn.receiver.servlet.RtmpCSServlet</servlet-class> 
+		</servlet> <servlet-mapping> <servlet-name>RtmpCSServlet</servlet-name> <url-pattern>/live/clientreport</url-pattern> 
+		</servlet-mapping> -->
+
+	<servlet>
+		<servlet-name>LiveDisplayServlet</servlet-name>
+		<servlet-class>com.letv.cdn.receiver.servlet.LiveDisplayServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LiveDisplayServlet</servlet-name>
+		<url-pattern>/live/display</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>LiveClientDisplayServlet</servlet-name>
+		<servlet-class>com.letv.cdn.receiver.servlet.LiveClientDisplayServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LiveClientDisplayServlet</servlet-name>
+		<url-pattern>/liveclient/display</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>LogReportServlet</servlet-name>
+		<servlet-class>com.letv.cdn.receiver.servlet.LogReportServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LogReportServlet</servlet-name>
+		<url-pattern>/logreport/*</url-pattern>
+	</servlet-mapping>
+
+</web-app>
